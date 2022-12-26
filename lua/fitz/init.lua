@@ -27,6 +27,7 @@ vim.keymap.set('n', '<C-l>q', ':noh<cr>')
 vim.cmd[[map \ ^]]
 
 vim.cmd [[autocmd FileType go  map <F12> :!go fmt ./...<cr>]]
+vim.cmd [[autocmd FileType go setlocal shiftwidth=8 tabstop=8 noexpandtab]]
 
 vim.cmd'tnoremap <Esc> <C-\\><C-n>'
 vim.cmd[[nnoremap <leader>sh <cmd>sp term://bash <cr>]]
@@ -37,3 +38,7 @@ vim.cmd[[map <C-Right> :tabnext<cr>]]
 
 vim.o.statusline = '   %f %m | %l:%c %L%=%P'
 vim.o.ls = 3
+
+vim.keymap.set('n', '<leader>bl', ':!git blame %<cr>')
+
+vim.cmd[[nnoremap <leader>te <cmd>vs term://bash \| vertical resize 80;<cr>]]

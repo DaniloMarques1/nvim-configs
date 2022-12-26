@@ -1,6 +1,6 @@
 require('ayu').setup({
   overrides = {
-    Normal = { fg = '#bcbcbc', bg='#000000' },
+    --Normal = { fg = '#bcbcbc', bg='#000000' },
     Comment = { fg = '#585858' }, -- ffc0cb
     WinSeparator = { bg = 'none' },
     StatusLine = { bg = '#303030', fg='#bcbcbc' },
