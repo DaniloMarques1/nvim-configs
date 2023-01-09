@@ -2,14 +2,14 @@ require('fitz.remap')
 require('fitz.colors')
 require('fitz.packer')
 
---vim.opt.guicursor='n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175'
+vim.opt.guicursor='n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175'
 
-vim.opt.guicursor=""
+--vim.opt.guicursor=""
 
 vim.opt.cursorline=true
 
---vim.opt.nu = true
---vim.opt.relativenumber = true
+vim.opt.nu = true
+vim.opt.relativenumber = true
 vim.opt.syntax = 'enable'
 vim.opt.autoindent = true
 vim.opt.autoread = true
