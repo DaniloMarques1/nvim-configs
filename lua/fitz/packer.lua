@@ -17,6 +17,8 @@ return require('packer').startup(function(use)
 	  'Shatur/neovim-ayu'
   }
 
+  use { "catppuccin/nvim", as = "catppuccin" }
+
   use ('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
 
   use {

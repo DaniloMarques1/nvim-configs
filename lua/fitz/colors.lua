@@ -1,5 +1,5 @@
 require('ayu').setup({
-  mirage = "true",
+  --mirage = "true",
   overrides = {
     --Normal = { fg = '#bcbcbc', bg='#000000' },
     Comment = { fg = '#585858' }, -- ffc0cb
@@ -13,4 +13,17 @@ require('ayu').setup({
   }
 })
 
-vim.cmd('colorscheme ayu')
+require("catppuccin").setup {
+    flavour = "mocha",
+    background = {
+        light = "latter",
+        dark = "mocha",
+    },
+    color_overrides = {
+        mocha = {
+            base = "#000000",
+        },
+    }
+}
+
+vim.cmd[[colorscheme catppuccin-mocha]]
