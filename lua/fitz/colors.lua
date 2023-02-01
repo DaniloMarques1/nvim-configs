@@ -23,7 +23,11 @@ require("catppuccin").setup {
         mocha = {
             base = "#000000",
         },
-    }
+    },
+    styles = {
+        functions = { 'italic' },
+        conditionals = {},
+    },
 }
 
 vim.cmd[[colorscheme catppuccin-mocha]]

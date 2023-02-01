@@ -19,6 +19,10 @@ return require('packer').startup(function(use)
 
   use { "catppuccin/nvim", as = "catppuccin" }
 
+  use {
+      "ellisonleao/gruvbox.nvim"
+  }
+
   use ('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
 
   use {
