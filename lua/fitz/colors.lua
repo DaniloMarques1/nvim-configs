@@ -13,6 +13,8 @@ require('ayu').setup({
   }
 })
 
+--vim.cmd[[colorscheme ayu]]
+
 require("catppuccin").setup {
     flavour = "mocha",
     background = {
@@ -30,4 +32,16 @@ require("catppuccin").setup {
     },
 }
 
-vim.cmd[[colorscheme catppuccin-mocha]]
+--vim.cmd[[colorscheme catppuccin-mocha]]
+
+require('gruvbox').setup {
+    italic = false,
+    overrides = {
+        Normal = {bg = "#1a1a1a"},
+        NormalFloat = {bg = "#000000"},
+        Visual = {bg = "#264f78"},
+        CursorLine = {bg = "#222222"},
+        CursorLineNr = {bg = "#222222"},
+    },
+}
+vim.cmd[[colorscheme gruvbox]]
