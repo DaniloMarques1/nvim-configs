@@ -17,6 +17,8 @@ return require('packer').startup(function(use)
 	  'Shatur/neovim-ayu'
   }
 
+  use 'Mofiqul/vscode.nvim'
+
   use { "catppuccin/nvim", as = "catppuccin" }
 
   use {

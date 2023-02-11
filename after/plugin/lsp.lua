@@ -58,6 +58,11 @@ require('lspconfig')['sumneko_lua'].setup {
     flags = lsp_flags,
 }
 
+require('lspconfig')['dockerls'].setup {
+    on_attach = on_attach,
+    flags = lsp_flags,
+}
+
 vim.diagnostic.config {
     virtual_text = false,
     signs = false,

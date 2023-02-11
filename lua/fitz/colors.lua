@@ -1,47 +1,48 @@
-require('ayu').setup({
-  --mirage = "true",
-  overrides = {
-    --Normal = { fg = '#bcbcbc', bg='#000000' },
-    Comment = { fg = '#585858' }, -- ffc0cb
-    WinSeparator = { bg = 'none' },
-    StatusLine = { bg = '#C6C6C6', fg='#000000' },
-    Visual = { bg = '#00005f' },
-    --CursorLine = {bg = '#1b1b1b'},
-    CursorLine = {bg = 'none'},
-    CursorLineNr = {bg = 'none', fg="#FFFF47"},
-    LineNr = { bg="none", fg="#838383" },
-  }
-})
+--require('ayu').setup({
+--  --mirage = "true",
+--  overrides = {
+--    --Normal = { fg = '#bcbcbc', bg='#000000' },
+--    Comment = { fg = '#585858' }, -- ffc0cb
+--    WinSeparator = { bg = 'none' },
+--    StatusLine = { bg = '#C6C6C6', fg='#000000' },
+--    Visual = { bg = '#00005f' },
+--    --CursorLine = {bg = '#1b1b1b'},
+--    CursorLine = {bg = 'none'},
+--    CursorLineNr = {bg = 'none', fg="#FFFF47"},
+--    LineNr = { bg="none", fg="#838383" },
+--  }
+--})
 
 --vim.cmd[[colorscheme ayu]]
 
-require("catppuccin").setup {
-    flavour = "mocha",
-    background = {
-        light = "latter",
-        dark = "mocha",
-    },
-    color_overrides = {
-        mocha = {
-            base = "#000000",
-        },
-    },
-    styles = {
-        functions = { 'italic' },
-        conditionals = {},
-    },
-}
+--require("catppuccin").setup {
+--    flavour = "mocha",
+--    background = {
+--        light = "latter",
+--        dark = "mocha",
+--    },
+--    color_overrides = {
+--        mocha = {
+--            base = "#000000",
+--        },
+--    },
+--    styles = {
+--        functions = { 'italic' },
+--        conditionals = {},
+--    },
+--}
 
 --vim.cmd[[colorscheme catppuccin-mocha]]
 
-require('gruvbox').setup {
-    italic = false,
-    overrides = {
-        Normal = {bg = "#1a1a1a"},
-        NormalFloat = {bg = "#000000"},
-        Visual = {bg = "#264f78"},
-        CursorLine = {bg = "#222222"},
-        CursorLineNr = {bg = "#222222"},
-    },
-}
-vim.cmd[[colorscheme gruvbox]]
+--require('gruvbox').setup {
+--    overrides = {
+--        Normal = {bg = "#1a1a1a"},
+--        NormalFloat = {bg = "#000000"},
+--        Visual = {bg = "#264f78"},
+--        CursorLine = {bg = "#222222"},
+--        CursorLineNr = {bg = "#222222"},
+--    },
+--}
+--vim.cmd[[colorscheme gruvbox]]
+
+vim.cmd[[colorscheme vscode]]
