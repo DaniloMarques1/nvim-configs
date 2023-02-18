@@ -1,7 +1,0 @@
-require('plugin')
-require('lsp')
---require('completion')
---require('color')
-require('treesitter')
-require('userconfig')
-require('telescope')
