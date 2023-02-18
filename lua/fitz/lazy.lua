@@ -14,6 +14,8 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " " -- needed for lazy
 require("lazy").setup({
     'Mofiqul/vscode.nvim',
+    'tpope/vim-fugitive',
+    'nvim-tree/nvim-web-devicons',
     {
         'neovim/nvim-lspconfig',
         dependencies = {
@@ -33,5 +35,4 @@ require("lazy").setup({
         'nvim-treesitter/nvim-treesitter',
         build = ':TSUpdate'
     },
-    'tpope/vim-fugitive'
 })

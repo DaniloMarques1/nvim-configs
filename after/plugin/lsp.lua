@@ -35,80 +35,22 @@ local on_attach = function(client, bufnr)
     vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
 end
 
+local servers = { 'pyright', 'tsserver', 'gopls', 'dockerls', 'jsonls' }
+
 local lsp_flags = {
     -- This is the default in Nvim 0.7+
     debounce_text_changes = 150,
 }
-require('lspconfig')['pyright'].setup {
-    on_attach = on_attach,
-    flags = lsp_flags,
-}
-require('lspconfig')['tsserver'].setup {
-    on_attach = on_attach,
-    flags = lsp_flags,
-}
 
-require('lspconfig')['gopls'].setup {
-    on_attach = on_attach,
-    flags = lsp_flags,
-}
-
-require('lspconfig')['sumneko_lua'].setup {
-    on_attach = on_attach,
-    flags = lsp_flags,
-}
-
-require('lspconfig')['dockerls'].setup {
-    on_attach = on_attach,
-    flags = lsp_flags,
-}
+for _, server in pairs(servers) do
+    require('lspconfig')[server].setup {
+        on_attach = on_attach,
+        flags = lsp_flags,
+    }
+end
 
 vim.diagnostic.config {
     virtual_text = false,
     signs = false,
     underline = false,
 }
-
---vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format({async=true, filter=function(client) return client.name ~="tsserver" end})]]
-
---local lsp = require()
-
---lsp.preset('recommended')
---lsp.ensure_installed({
---	'tsserver',
---	'sumneko_lua',
---	'gopls',
---	'rust_analyzer',
---	'pyright',
---})
---
---lsp.setup_nvim_cmp({
---  sources = {
---    {name = 'path'},
---    {name = 'nvim_lsp', keyword_length = 1},
---    {name = 'nvim_lua', keyword_length = 1},
---    {name = 'buffer', keyword_length = 1},
---  }
---})
---
---lsp.set_preferences {
---    sign_icons = {
---        error = '✘',
---        warn = '▲',
---        hint = '⚑',
---        info = ''
---    }
---}
---
---local opts = { noremap=true, silent=true}
---vim.api.nvim_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
---
---lsp.on_attach(function(client, bufnr)
---  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
---  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
---  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
---  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
---end)
---
---lsp.setup()
---p
