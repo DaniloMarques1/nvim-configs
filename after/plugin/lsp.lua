@@ -1,10 +1,12 @@
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 
-require("mason").setup()
-require("mason-lspconfig").setup()
-
-local opts = { noremap = true, silent = true }
+local lsp = require('lsp-zero').preset({
+  name = 'minimal',
+  set_lsp_keymaps = true,
+  manage_nvim_cmp = true,
+  suggest_lsp_servers = false,
+})
 
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
@@ -35,22 +37,37 @@ local on_attach = function(client, bufnr)
     vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
 end
 
-local servers = { 'pyright', 'tsserver', 'gopls', 'dockerls', 'jsonls' }
+lsp.on_attach(on_attach)
 
-local lsp_flags = {
-    -- This is the default in Nvim 0.7+
-    debounce_text_changes = 150,
-}
+lsp.setup()
 
-for _, server in pairs(servers) do
-    require('lspconfig')[server].setup {
-        on_attach = on_attach,
-        flags = lsp_flags,
-    }
-end
-
-vim.diagnostic.config {
-    virtual_text = false,
-    signs = false,
-    underline = false,
-}
+--require("mason").setup()
+--require("mason-lspconfig").setup()
+--
+--local opts = { noremap = true, silent = true }
+--
+--vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
+--vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
+--vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+--vim.keymap.set('n', '<space>d', vim.diagnostic.setloclist, opts)
+--
+--
+--local servers = { 'pyright', 'tsserver', 'gopls', 'dockerls', 'jsonls' }
+--
+--local lsp_flags = {
+--    -- This is the default in Nvim 0.7+
+--    debounce_text_changes = 150,
+--}
+--
+--for _, server in pairs(servers) do
+--    require('lspconfig')[server].setup {
+--        on_attach = on_attach,
+--        flags = lsp_flags,
+--    }
+--end
+--
+--vim.diagnostic.config {
+--    virtual_text = false,
+--    signs = false,
+--    underline = false,
+--}
