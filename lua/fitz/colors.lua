@@ -1,26 +1,48 @@
-require('ayu').setup({
-    mirage = false,
-    overrides = {
-        WinSeparator = { bg = 'none' },
-    }
-})
-vim.cmd[[colorscheme ayu]]
-
---require("github-theme").setup({
---  theme_style = "dark",
---  function_style = "italic",
---  sidebars = {"qf", "vista_kind", "terminal", "packer"},
---
---  -- Change the "hint" color to the "orange" color, and make the "error" color bright red
---  colors = {hint = "orange", error = "#ff0000"},
---
---  -- Overwrite the highlight groups
---  overrides = function(c)
---    return {
---      htmlTag = {fg = c.red, bg = "#282c34", sp = c.hint, style = "underline"},
---      DiagnosticHint = {link = "LspDiagnosticsDefaultHint"},
---      -- this will remove the highlight groups
---      TSField = {},
+--require('ayu').setup({
+--    mirage = false,
+--    overrides = {
+--        WinSeparator = { bg = 'none' },
 --    }
---  end
 --})
+--vim.cmd[[colorscheme ayu]]
+--
+require("catppuccin").setup {
+    flavour = "mocha", -- latte, frappe, macchiato, mocha
+    term_colors = true,
+    transparent_background = false,
+    no_italic = false,
+    no_bold = false,
+    styles = {
+        comments = {},
+        conditionals = {},
+        loops = {},
+        functions = {},
+        keywords = {},
+        strings = {},
+        variables = {},
+        numbers = {},
+        booleans = {},
+        properties = {},
+        types = {},
+    },
+    color_overrides = {
+        mocha = {
+            base = "#000000",
+            mantle = "#000000",
+            crust = "#000000",
+        },
+    },
+    highlight_overrides = {
+        mocha = function(C)
+            return {
+                TabLineSel = { bg = C.pink },
+                CmpBorder = { fg = C.surface2 },
+                Pmenu = { bg = C.none },
+                TelescopeBorder = { link = "FloatBorder" },
+                WinSeparator = {bg = 'None'}
+            }
+        end,
+    },
+}
+
+		vim.cmd.colorscheme "catppuccin"
