@@ -14,7 +14,7 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " " -- needed for lazy
 vim.g.maplocalleader = "," -- needed for lazy
 require("lazy").setup({
-    'Shatur/neovim-ayu',
+    'tanvirtin/monokai.nvim',
     { "catppuccin/nvim", name = "catppuccin" },
     'tpope/vim-fugitive',
     'nvim-tree/nvim-web-devicons',
@@ -38,22 +38,4 @@ require("lazy").setup({
             'williamboman/mason-lspconfig.nvim'
         }
     },
-    {
-        "nvim-neorg/neorg",
-        build = ":Neorg sync-parsers",
-        opts = {
-            load = {
-                ["core.defaults"] = {}, -- Loads default behaviour
-                ["core.norg.concealer"] = {}, -- Adds pretty icons to your documents
-                ["core.norg.dirman"] = { -- Manages Neorg workspaces
-                config = {
-                    workspaces = {
-                        notes = "~/notes",
-                    },
-                },
-            },
-        },
-    },
-    dependencies = { { "nvim-lua/plenary.nvim" } },
-}
 })

@@ -27,15 +27,14 @@ require("catppuccin").setup {
     },
     color_overrides = {
         mocha = {
-            base = "#000000",
-            mantle = "#000000",
-            crust = "#000000",
+            base = "#1e1e1e",
+            mantle = "#1e1e1e",
+            crust = "#1e1e1e",
         },
     },
     highlight_overrides = {
         mocha = function(C)
             return {
-                TabLineSel = { bg = C.pink },
                 CmpBorder = { fg = C.surface2 },
                 Pmenu = { bg = C.none },
                 TelescopeBorder = { link = "FloatBorder" },
@@ -45,4 +44,5 @@ require("catppuccin").setup {
     },
 }
 
-		vim.cmd.colorscheme "catppuccin"
+--vim.cmd.colorscheme "catppuccin"
+vim.cmd.colorscheme "monokai_pro"
