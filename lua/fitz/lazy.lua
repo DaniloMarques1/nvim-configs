@@ -14,12 +14,10 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " " -- needed for lazy
 vim.g.maplocalleader = "," -- needed for lazy
 require("lazy").setup({
-    'tanvirtin/monokai.nvim',
     { "catppuccin/nvim", name = "catppuccin" },
+    'Mofiqul/vscode.nvim',
     'tpope/vim-fugitive',
-    'nvim-tree/nvim-web-devicons',
     {
-
 	  'nvim-telescope/telescope.nvim',
       tag = '0.1.0',
       dependencies = {
@@ -30,12 +28,15 @@ require("lazy").setup({
         'nvim-treesitter/nvim-treesitter',
         build = ':TSUpdate'
     },
-    { 'nvim-lualine/lualine.nvim', opts = {}},
     {
         'neovim/nvim-lspconfig',
         dependencies = {
             'williamboman/mason.nvim',
-            'williamboman/mason-lspconfig.nvim'
+            'williamboman/mason-lspconfig.nvim',
+            --'hrsh7th/nvim-cmp',
+            --'hrsh7th/cmp-nvim-lsp',
+            --'hrsh7th/cmp-buffer',
+            --'hrsh7th/cmp-path',
         }
     },
 })
