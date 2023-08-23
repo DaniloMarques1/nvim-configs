@@ -37,36 +37,50 @@ local lsp_flags = {
 }
 
 -- Set up nvim-cmp.
---local cmp = require'cmp'
---
---cmp.setup({
---    mapping = cmp.mapping.preset.insert({
---        ['<C-b>'] = cmp.mapping.scroll_docs(-4),
---        ['<C-f>'] = cmp.mapping.scroll_docs(4),
---        ['<C-Space>'] = cmp.mapping.complete(),
---        ['<C-e>'] = cmp.mapping.abort(),
---        ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
---    }),
---    sources = cmp.config.sources({
---        { name = 'nvim_lsp' },
---    }, {
---        { name = 'buffer' },
---        { name = 'path' },
---    })
---})
+local cmp = require'cmp'
+
+cmp.setup({
+    mapping = cmp.mapping.preset.insert({
+        ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-f>'] = cmp.mapping.scroll_docs(4),
+        ['<C-Space>'] = cmp.mapping.complete(),
+        ['<C-e>'] = cmp.mapping.abort(),
+        ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    }),
+    sources = cmp.config.sources({
+        { name = 'nvim_lsp' },
+    }, {
+        { name = 'buffer' },
+        { name = 'path' },
+    })
+})
 
 require("mason").setup()
 require("mason-lspconfig").setup_handlers({
     function (server_name)
+        local init_options = {}
+        if (server_name == 'tsserver') then
+            init_options = {
+                preferences = {
+                    includeCompletionsForModuleExports=false,
+                    includeCompletionsWithSnippetText=false,
+                    displayPartsForJSDoc=false,
+                    allowIncompleteCompletions=false,
+                    jsxAttributeCompletionStyle=false,
+                }
+            }
+        end
+
         require('lspconfig')[server_name].setup{
             on_attach = on_attach,
             flags = lsp_flags,
+            init_options = init_options,
         }
     end
 })
 
 vim.diagnostic.config {
-    virtual_text = false,
+    virtual_text = true,
     signs = false,
     underline = false,
 }
