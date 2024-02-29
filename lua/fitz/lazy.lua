@@ -15,11 +15,10 @@ vim.g.mapleader = " " -- needed for lazy
 vim.g.maplocalleader = "," -- needed for lazy
 require("lazy").setup({
     { "catppuccin/nvim", name = "catppuccin" },
-    'Mofiqul/vscode.nvim',
     'tpope/vim-fugitive',
     {
 	  'nvim-telescope/telescope.nvim',
-      tag = '0.1.0',
+      tag = "0.1.5",
       dependencies = {
           'nvim-lua/plenary.nvim'
       }
@@ -33,27 +32,10 @@ require("lazy").setup({
         dependencies = {
             'williamboman/mason.nvim',
             'williamboman/mason-lspconfig.nvim',
-            'hrsh7th/nvim-cmp',
-            'hrsh7th/cmp-nvim-lsp',
-            'hrsh7th/cmp-buffer',
-            'hrsh7th/cmp-path',
-
-            -- Useful status updates for LSP
-            -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-            { 'j-hui/fidget.nvim', tag = 'legacy', opts = {} },
+            --'hrsh7th/nvim-cmp',
+            --'hrsh7th/cmp-nvim-lsp',
+            --'hrsh7th/cmp-buffer',
+            --'hrsh7th/cmp-path',
         }
-    },
-    {
-        -- Set lualine as statusline
-        'nvim-lualine/lualine.nvim',
-        -- See `:help lualine.txt`
-        opts = {
-            options = {
-                icons_enabled = false,
-                theme = 'onedark',
-                component_separators = '|',
-                section_separators = '',
-            },
-        },
     },
 })
