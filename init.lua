@@ -1,6 +1,7 @@
 require('mason').setup()
 require("mason-lspconfig").setup()
 require'telescope'.setup()
+vim.g.mapleader = " "
 
 vim.keymap.set('n', '<space>d', vim.diagnostic.setloclist, opts)
 local on_attach = function(client, bufnr)
