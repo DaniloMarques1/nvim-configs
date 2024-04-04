@@ -45,13 +45,44 @@ vim.api.nvim_create_autocmd('BufWritePre', {
     group = vim.api.nvim_create_augroup('Format', {})
 })
 
+-- telescope
+
+local builtin = require("telescope.builtin")
+vim.keymap.set("n", "<leader>ff", function()
+	builtin.find_files()
+end, {})
+vim.keymap.set("n", "<leader>bb", function()
+	builtin.buffers()
+end, {})
+vim.keymap.set("n", "<C-p>", function()
+	builtin.git_files()
+end, {})
+vim.keymap.set("n", "<leader>gg", function()
+	builtin.live_grep()
+end, {})
+vim.keymap.set("n", "<leader>rf", function()
+	builtin.lsp_references()
+end, {})
+
 
 vim.opt.guicursor=''
 vim.opt.number=true
 vim.opt.fillchars:append { eob = " " }
 vim.keymap.set('n', '<C-s>', ':w<cr>')
 vim.keymap.set('n', '<C-l>q', ':noh<cr>')
+vim.keymap.set('n', '<leader>q', ':bd!<cr>')
+
+vim.cmd [[map <C-Left> :tabprev<cr>]]
+vim.cmd [[map <C-Right> :tabnext<cr>]]
+
+vim.cmd[[filetype on]]
+vim.cmd[[filetype indent on]]
+vim.cmd[[filetype plugin on]]
+vim.cmd[[filetype indent plugin on]]
+vim.opt.tabstop=4
+vim.opt.shiftwidth=4
 
 -- use inside of a terminal
 vim.cmd 'tnoremap <Esc> <C-\\><C-n>'
 vim.cmd [[set hidden]]
+
