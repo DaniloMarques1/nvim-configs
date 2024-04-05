@@ -1,6 +1,8 @@
 require('mason').setup()
 require("mason-lspconfig").setup()
-require'telescope'.setup()
+require'telescope'.setup {
+	defaults = { file_ignore_patterns = { "node_modules"}},
+}
 vim.g.mapleader = " "
 
 vim.keymap.set('n', '<space>d', vim.diagnostic.setloclist, opts)
