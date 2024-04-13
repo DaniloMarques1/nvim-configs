@@ -10,6 +10,7 @@ PACKAGES=(
 	"neovim/nvim-lspconfig"
 	"williamboman/mason.nvim"
 	"williamboman/mason-lspconfig.nvim"
+	"junegunn/fzf.vim"
 )
 
 mkdir -p /home/fitz/.local/share/nvim/site/pack/plugins/start

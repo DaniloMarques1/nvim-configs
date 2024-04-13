@@ -1,8 +1,8 @@
 require('mason').setup()
 require("mason-lspconfig").setup()
-require'telescope'.setup {
-	defaults = { file_ignore_patterns = { "node_modules"}},
-}
+--require'telescope'.setup {
+--	defaults = { file_ignore_patterns = { "node_modules"}},
+--}
 vim.g.mapleader = " "
 
 vim.keymap.set('n', '<space>d', vim.diagnostic.setloclist, opts)
@@ -66,7 +66,27 @@ end, {})
 vim.keymap.set("n", "<leader>rf", function()
 	builtin.lsp_references()
 end, {})
+--local builtin = require("telescope.builtin")
+--vim.keymap.set("n", "<leader>ff", function()
+--	builtin.find_files()
+--end, {})
+--vim.keymap.set("n", "<leader>bb", function()
+--	builtin.buffers()
+--end, {})
+--vim.keymap.set("n", "<C-p>", function()
+--	builtin.git_files()
+--end, {})
+--vim.keymap.set("n", "<leader>gg", function()
+--	builtin.live_grep()
+--end, {})
+--vim.keymap.set("n", "<leader>rf", function()
+--	builtin.lsp_references()
+--end, {})
 
+-- fzf
+vim.keymap.set('n', '<leader>ff', ':Files<cr>')
+vim.keymap.set('n', '<leader>ag', ':Ag<cr>')
+vim.keymap.set('n', '<leader>bb', ':Buffers!<cr>')
 
 vim.opt.guicursor=''
 vim.opt.number=true
@@ -74,6 +94,8 @@ vim.opt.fillchars:append { eob = " " }
 vim.keymap.set('n', '<C-s>', ':w<cr>')
 vim.keymap.set('n', '<C-l>q', ':noh<cr>')
 vim.keymap.set('n', '<leader>q', ':bd!<cr>')
+vim.o.number=false
+vim.cmd[[colorscheme retrobox]]
 
 vim.cmd [[map <C-Left> :tabprev<cr>]]
 vim.cmd [[map <C-Right> :tabnext<cr>]]
