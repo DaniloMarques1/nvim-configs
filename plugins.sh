@@ -6,11 +6,10 @@
 PACKAGES=(
 	"nvim-telescope/telescope.nvim"
 	"nvim-lua/plenary.nvim"
+	"nvim-telescope/telescope-fzf-native.nvim"
 	"tpope/vim-fugitive"
 	"neovim/nvim-lspconfig"
-	"williamboman/mason.nvim"
-	"williamboman/mason-lspconfig.nvim"
-	"junegunn/fzf.vim"
+	"tanvirtin/monokai.nvim"
 )
 
 mkdir -p /home/fitz/.local/share/nvim/site/pack/plugins/start
