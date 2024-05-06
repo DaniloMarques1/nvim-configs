@@ -5,7 +5,24 @@ vim.keymap.set('n', '<C-s>', ':w<cr>')
 vim.keymap.set('n', '<C-l>q', ':noh<cr>')
 vim.keymap.set('n', '<leader>q', ':bd<cr>')
 vim.o.number=false
-vim.cmd[[colorscheme catppuccin]]
+require('catppuccin').setup({
+	no_italic = true,
+	color_overrides = {
+		mocha = {
+			base = "#141414",
+			mantle = "#141414",
+			crust = "#141414",
+		},
+	},
+	highlight_overrides = {
+		mocha = function(C)
+			return {
+				WinSeparator = { fg = '#ffffff' },
+			}
+		end,
+	}
+})
+vim.cmd.colorscheme "catppuccin"
 
 vim.cmd [[map <C-Left> :tabprev<cr>]]
 vim.cmd [[map <C-Right> :tabnext<cr>]]
@@ -30,6 +47,7 @@ vim.cmd [[set hidden]]
 vim.cmd [[let g:netrw_liststyle = 3]]
 vim.cmd [[let g:netrw_browse_split = 4]]
 vim.cmd [[let g:netrw_keepdir = 0]]
+--vim.cmd [[let g:netrw_keepdir = 0]]
 vim.cmd [[let g:netrw_altv = 1]]
 vim.cmd [[let g:netrw_banner = 0]]
 vim.cmd [[let g:netrw_list_hide=netrw_gitignore#Hide()]]
