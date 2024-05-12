@@ -9,8 +9,8 @@ PACKAGES=(
 	"nvim-telescope/telescope-fzf-native.nvim"
 	"tpope/vim-fugitive"
 	"neovim/nvim-lspconfig"
+	"Mofiqul/vscode.nvim"
 	"nvim-treesitter/nvim-treesitter"
-	"catppuccin/nvim"
 )
 
 mkdir -p /home/fitz/.local/share/nvim/site/pack/plugins/start

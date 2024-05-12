@@ -4,26 +4,7 @@ vim.opt.guicursor=''
 vim.keymap.set('n', '<C-s>', ':w<cr>')
 vim.keymap.set('n', '<C-l>q', ':noh<cr>')
 vim.keymap.set('n', '<leader>q', ':bd<cr>')
-vim.o.number=false
-require('catppuccin').setup({
-	no_italic = true,
-	color_overrides = {
-		mocha = {
-			base = "#141414",
-			mantle = "#141414",
-			crust = "#141414",
-		},
-	},
-	highlight_overrides = {
-		mocha = function(C)
-			return {
-				WinSeparator = { fg = '#ffffff' },
-			}
-		end,
-	}
-})
-vim.cmd.colorscheme "catppuccin"
-
+vim.o.number=true
 vim.cmd [[map <C-Left> :tabprev<cr>]]
 vim.cmd [[map <C-Right> :tabnext<cr>]]
 
@@ -34,7 +15,7 @@ vim.cmd[[filetype indent plugin on]]
 vim.opt.tabstop=4
 vim.opt.shiftwidth=4
 vim.o.splitright=true
-vim.o.ls = 3
+vim.o.ls = 1
 vim.o.statusline = '    %f %m | %l:%c %L%=%P'
 vim.opt.backup = false
 vim.opt.swapfile = false
@@ -46,7 +27,6 @@ vim.cmd 'tnoremap <Esc> <C-\\><C-n>'
 vim.cmd [[set hidden]]
 vim.cmd [[let g:netrw_liststyle = 3]]
 vim.cmd [[let g:netrw_browse_split = 4]]
-vim.cmd [[let g:netrw_keepdir = 0]]
 --vim.cmd [[let g:netrw_keepdir = 0]]
 vim.cmd [[let g:netrw_altv = 1]]
 vim.cmd [[let g:netrw_banner = 0]]
@@ -73,7 +53,7 @@ local configureTreeSitter = function()
 
 		-- Automatically install missing parsers when entering buffer
 		-- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
-		auto_install = false,
+		auto_install = true,
 
 		-- List of parsers to ignore installing (or "all")
 		ignore_install = { "" },
@@ -82,7 +62,7 @@ local configureTreeSitter = function()
 		-- parser_install_dir = "/some/path/to/store/parsers", -- Remember to run vim.opt.runtimepath:append("/some/path/to/store/parsers")!
 
 		highlight = {
-			enable = true,
+			enable = false,
 
 			-- NOTE: these are the names of the parsers and not the filetype. (for example if you want to
 			-- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
@@ -106,7 +86,6 @@ local configureTreeSitter = function()
 		},
 	}
 end
-
 
 local on_attach = function(client, bufnr)
 	-- Enable completion triggered by <c-x><c-o>
@@ -169,23 +148,75 @@ local configureTelescope = function()
 	telescope.load_extension('fzf')
 
 	local builtin = require("telescope.builtin")
-	vim.keymap.set("n", "<leader>ff", function()
-		builtin.find_files(require('telescope.themes').get_ivy({}))
+	vim.keymap.set("n", "<C-p>", function()
+		builtin.find_files(require('telescope.themes').get_dropdown({}))
 	end, {})
 	vim.keymap.set("n", "<leader>bb", function()
-		builtin.buffers(require('telescope.themes').get_ivy({}))
+		builtin.buffers(require('telescope.themes').get_dropdown({}))
 	end, {})
-	vim.keymap.set("n", "<C-p>", function()
-		builtin.git_files(require('telescope.themes').get_ivy({}))
-	end, {})
+	--vim.keymap.set("n", "<C-p>", function()
+	--	builtin.git_files(require('telescope.themes').get_ivy({}))
+	--end, {})
 	vim.keymap.set("n", "<leader>gg", function()
-		builtin.live_grep(require('telescope.themes').get_ivy({}))
+		builtin.live_grep(require('telescope.themes').get_dropdown({}))
 	end, {})
 	vim.keymap.set("n", "<leader>rf", function()
-		builtin.lsp_references(require('telescope.themes').get_ivy({}))
+		builtin.lsp_references(require('telescope.themes').get_dropdown({}))
 	end, {})
 end
 
-configureTreeSitter()
+local colorscheme = function()
+	vim.cmd('colorscheme vscode')
+	vim.cmd('hi Normal guibg=#1c1c1c')
+end
+
+
+colorscheme()
+--configureTreeSitter()
 configureTelescope()
 configureLsp()
+
+function Formatcode()
+	-- Get the current buffer handle
+	local bufnr = vim.api.nvim_get_current_buf()
+	-- Get all lines from the buffer
+	local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
+	local content = table.concat(lines, " ")
+
+	local pathTo = string.format("/home/fitz/programming/gof/gof %q", lines)
+	-- print(pathTo)
+	local wHandle = io.popen(pathTo, 'w')
+	wHandle:close()
+
+	local rHandle = io.popen(pathTo, 'r')
+	local out = rHandle:read('*a')
+	rHandle:close()
+	--print(out)
+
+	--local code = vim.fn.getline(1, "$")
+	--print(code.concat())
+	-- local openPop = assert(io.popen('/bin/ls -la', 'r'))
+	-- local out = openPop:read('*all')
+	-- openPop:close()
+	-- print(out)
+	-- print("Opa")
+end
+
+-- Define a function to call the external Go program
+--local function formatCode(code)
+--    local handle = io.popen("gof", "w") -- Replace "path/to/your/go/program" with the actual path
+--    handle:write(code)
+--    handle:close()
+--
+--    local handle = io.popen("gof", "r") -- Replace "path/to/your/go/program" with the actual path
+--    local formattedCode = handle:read("*a")
+--    handle:close()
+--
+--    return formattedCode
+--end
+
+-- Call the formatCode function with the content of the buffer
+--local formattedCode = formatCode(vim.fn.getline(1, "$"))
+
+-- Update the buffer with the formatted code
+--vim.fn.setline(1, formattedCode)
